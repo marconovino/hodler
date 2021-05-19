@@ -3,6 +3,7 @@ import plotly.graph_objects as go
 import discord
 import asyncio
 import os
+from discord.ext import commands
 
 #  VARIABLES  #
 bot = commands.Bot(command_prefix = '$', activity=discord.Game(name="Hodling coinz"))
