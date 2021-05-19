@@ -40,7 +40,7 @@ async def graph(ctx,coin,interval = '15m'):
                        open=open_data, high=high_data,
                        low=low_data, close=close_data)])
     fig.write_image("figure.png", engine="kaleido")
-    ctx.send(file = "figure.png")
+    await ctx.send(file = "figure.png")
 
 bot.run(TOKEN)
 #hi taric
