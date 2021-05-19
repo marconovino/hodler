@@ -46,7 +46,7 @@ async def graph(ctx,coin,interval = '15m'):
     #file=discord.File('figure.png')
     #embed.set_image(url="attachment://figure.png")
     #await message.edit(file=file,embed = embed)
-    await message.edit("aight it worked")
+    await message.edit(content = "aight it worked")
 
 bot.run(TOKEN)
 #hi taric
