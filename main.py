@@ -3,6 +3,7 @@ import plotly.graph_objects as go
 import discord
 import asyncio
 import os
+import psutil
 from discord.ext import commands
 
 #  VARIABLES  #
