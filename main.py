@@ -45,7 +45,7 @@ async def graph(ctx,coin,interval = '15m'):
     embed = discord.Embed(title="Here is your graph!", description=f"{coin}/USD", color=0x0c0f27)
     file=discord.File('figure.png')
     embed.set_image(url="attachment://figure.png")
-    await message.edit(file=file)
+    await message.edit(file=file,embed = embed)
 
 bot.run(TOKEN)
 #hi taric
