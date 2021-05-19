@@ -2,6 +2,7 @@ import shrimpy
 import plotly.graph_objects as go
 import discord
 import asyncio
+import os
 
 #  VARIABLES  #
 bot = commands.Bot(command_prefix = '$', activity=discord.Game(name="Hodling coinz"))
