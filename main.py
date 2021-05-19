@@ -42,7 +42,10 @@ async def graph(ctx,coin,interval = '15m'):
                        open=open_data, high=high_data,
                        low=low_data, close=close_data)])
     fig.write_image("figure.png", engine="kaleido")
-    await ctx.send(file=discord.File('figure.png'))
+    embed = discord.Embed(title="Here is your graph!", description=f"{coin}/USD", color=0x0c0f27)
+    file=discord.File('figure.png')
+    embed.set_image(url="attachment://figure.png")
+    await ctx.edit(file=file)
 
 bot.run(TOKEN)
 #hi taric
