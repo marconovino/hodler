@@ -30,7 +30,7 @@ async def on_ready():
 @bot.command()
 async def graph(ctx,coin,interval = '15m'):
     embed = discord.Embed(title="Loading graph", description="Sit tight! Our highly trained team of shiba inus are retrieving the data", color=0x0c0f27)
-    await ctx.send(embed=embed)
+    message = await ctx.send(embed=embed)
     candles = client.get_candles('binance',coin,'BUSD',interval)
     for candle in candles:
         dates.append(candle['time'])
@@ -45,7 +45,7 @@ async def graph(ctx,coin,interval = '15m'):
     embed = discord.Embed(title="Here is your graph!", description=f"{coin}/USD", color=0x0c0f27)
     file=discord.File('figure.png')
     embed.set_image(url="attachment://figure.png")
-    await ctx.edit(file=file)
+    await message.edit(file=file)
 
 bot.run(TOKEN)
 #hi taric
