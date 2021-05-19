@@ -21,11 +21,11 @@ close_data = []
 
 @bot.event
 async def on_ready():
-    print("--------------------")
+    print("---------------------")
     print('Logged in as')
     print(bot.user.name)
     print(bot.user.id)
-    print('--------------------')
+    print('---------------------')
 
 @bot.command()
 async def graph(ctx,coin,interval = '15m'):
