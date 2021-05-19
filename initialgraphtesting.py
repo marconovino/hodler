@@ -11,6 +11,11 @@ DATABASE_URL = os.environ['DATABASE_URL']
 public_key = os.getenv('SHRIMPY_PUB')
 secret_key = os.getenv('SHRIMPY_PRIV')
 client = shrimpy.ShrimpyApiClient(public_key, secret_key)
+dates = []
+open_data = []
+high_data = []
+low_data = []
+close_data = []
 
 @bot.event
 async def on_ready():
@@ -25,18 +30,7 @@ async def on_ready():
     #await bot.db.setup()
     #print("database loaded")
 
-candles = client.get_candles(
-    'binance',  # exchange
-    'DOGE',      # base_trading_symbol
-    'BTC',      # quote_trading_symbol
-    '15m'       # interval
-)
 
-dates = []
-open_data = []
-high_data = []
-low_data = []
-close_data = []
 
 for candle in candles:
     dates.append(candle['time'])
@@ -54,7 +48,4 @@ fig.savefig('graph.png')
 
 @bot.command()
 async def graph(ctx,coin,interval):
-    for member in ctx.guild.members:
-        member.create_dm()
-        member.send("weenor")
-        print(f"sent {member} a dm")
+    candles = client.get_candles('binance','DOGE','BTC','15m')
