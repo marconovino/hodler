@@ -3,8 +3,6 @@ import plotly.graph_objects as go
 import discord
 import asyncio
 
-
-
 #  VARIABLES  #
 bot = commands.Bot(command_prefix = '$', activity=discord.Game(name="Hodling coinz"))
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -26,22 +24,6 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('--------------------')
-
-#@bot.listen()
-#async def on_connect():
-    #await bot.db.setup()
-    #print("database loaded")
-
-
-
-
-
-fig = go.Figure(data=[go.Candlestick(x=dates,
-                       open=open_data, high=high_data,
-                       low=low_data, close=close_data)])
-
-fig.savefig('graph.png')
-
 
 @bot.command()
 async def graph(ctx,coin,interval = '15m'):
