@@ -1,5 +1,7 @@
 import shrimpy
 import plotly.graph_objects as go
+import discord
+import asyncio
 
 
 
