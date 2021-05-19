@@ -47,5 +47,6 @@ fig.savefig('graph.png')
 
 
 @bot.command()
-async def graph(ctx,coin,interval):
-    candles = client.get_candles('binance','DOGE','BTC','15m')
+async def graph(ctx,coin,interval = '15m'):
+    candles = client.get_candles('binance',coin,'BUSD',interval)
+
