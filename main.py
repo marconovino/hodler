@@ -58,3 +58,4 @@ async def graph(ctx,coin,interval = '15m'):
     fig.savefig('graph.png')
     ctx.send(file = 'graph.png')
 
+#hi taric
