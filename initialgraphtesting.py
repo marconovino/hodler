@@ -32,12 +32,7 @@ async def on_ready():
 
 
 
-for candle in candles:
-    dates.append(candle['time'])
-    open_data.append(candle['open'])
-    high_data.append(candle['high'])
-    low_data.append(candle['low'])
-    close_data.append(candle['close'])
+
 
 fig = go.Figure(data=[go.Candlestick(x=dates,
                        open=open_data, high=high_data,
@@ -49,4 +44,15 @@ fig.savefig('graph.png')
 @bot.command()
 async def graph(ctx,coin,interval = '15m'):
     candles = client.get_candles('binance',coin,'BUSD',interval)
+    for candle in candles:
+        dates.append(candle['time'])
+        open_data.append(candle['open'])
+        high_data.append(candle['high'])
+        low_data.append(candle['low'])
+        close_data.append(candle['close'])
+    fig = go.Figure(data=[go.Candlestick(x=dates,
+                       open=open_data, high=high_data,
+                       low=low_data, close=close_data)])
+    fig.savefig('graph.png')
+    ctx.send(file = 'graph.png')
 
