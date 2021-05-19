@@ -5,3 +5,4 @@ shrimpy-python
 pandas
 plotly==4.1.0
 psutil
+kaleido
