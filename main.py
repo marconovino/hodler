@@ -9,7 +9,6 @@ from discord.ext import commands
 bot = commands.Bot(command_prefix = '$', activity=discord.Game(name="Hodling coinz"))
 TOKEN = os.getenv('DISCORD_TOKEN')
 DATABASE_URL = os.environ['DATABASE_URL']
-#bot.db = Database()
 public_key = os.getenv('SHRIMPY_PUB')
 secret_key = os.getenv('SHRIMPY_PRIV')
 client = shrimpy.ShrimpyApiClient(public_key, secret_key)
@@ -39,7 +38,7 @@ async def graph(ctx,coin,interval = '15m'):
     fig = go.Figure(data=[go.Candlestick(x=dates,
                        open=open_data, high=high_data,
                        low=low_data, close=close_data)])
-    fig.savefig('graph.png')
+    fig.write_image(file='graph.png', format='.png')
     ctx.send(file = 'graph.png')
 
 bot.run(TOKEN)
