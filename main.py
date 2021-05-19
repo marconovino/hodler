@@ -39,8 +39,8 @@ async def graph(ctx,coin,interval = '15m'):
     fig = go.Figure(data=[go.Candlestick(x=dates,
                        open=open_data, high=high_data,
                        low=low_data, close=close_data)])
-    
-    ctx.send(file = fig.to_image('png'))
+    fig.write_image("figure.png", engine="kaleido")
+    ctx.send(file = "figure.png")
 
 bot.run(TOKEN)
 #hi taric
