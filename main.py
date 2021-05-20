@@ -28,10 +28,10 @@ async def on_ready():
     print('-------------------')
 
 @bot.command()
-async def graph(ctx,coin,interval = '15m'):
+async def graph(ctx,coin):
     embed = discord.Embed(title="Loading graph", description="Sit tight! Our highly trained team of shiba inus are retrieving the data", color=0x0c0f27)
     message = await ctx.send(embed=embed)
-    candles = client.get_candles('binance',coin,'BUSD',interval)
+    candles = client.get_candles('binance',coin,'BUSD','1d')
     for candle in candles:
         dates.append(candle['time'])
         open_data.append(candle['open'])
