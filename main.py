@@ -31,7 +31,8 @@ async def on_ready():
 async def graph(ctx,coin):
     embed = discord.Embed(title="Loading graph", description="Sit tight! Our highly trained team of shiba inus are retrieving the data", color=0x0c0f27)
     message = await ctx.send(embed=embed)
-    candles = client.get_candles('binance',coin,'BUSD','1d')
+    uppercoin = coin.upper()
+    candles = client.get_candles('binance',uppercoin,'BUSD','1d')
     for candle in candles:
         dates.append(candle['time'])
         open_data.append(candle['open'])
@@ -45,7 +46,6 @@ async def graph(ctx,coin):
     figpic = discord.File("figure.png", filename="figure.png")
     embed2 = discord.Embed()
     embed2.set_image(url="attachment://figure.png")
-    await ctx.send(content = "<@"+str(ctx.author.id) + ">",file = figpic,embed=embed2)
+    await message.edit(embed=embed2)
 
 bot.run(TOKEN)
-#hi taric
