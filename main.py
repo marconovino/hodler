@@ -46,6 +46,6 @@ async def graph(ctx,coin):
     figpic = discord.File("figure.png", filename="figure.png")
     embed2 = discord.Embed()
     embed2.set_image(url="attachment://figure.png")
-    await message.edit(embed=embed2)
+    await ctx.send(content = "<@"+str(ctx.author.id) + ">",file = figpic,embed=embed2)
 
 bot.run(TOKEN)
