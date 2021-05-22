@@ -15,6 +15,7 @@ bot.db = Database()
 public_key = os.getenv('SHRIMPY_PUB')
 secret_key = os.getenv('SHRIMPY_PRIV')
 client = shrimpy.ShrimpyApiClient(public_key, secret_key)
+actionlist = ["BUY", "SELL"]
 dates = []
 open_data = []
 high_data = []
@@ -54,5 +55,14 @@ async def graph(ctx,coin):
     embed2 = discord.Embed()
     embed2.set_image(url="attachment://figure.png")
     await ctx.send(content = "<@"+str(ctx.author.id) + ">",file = figpic,embed=embed2)
+
+@bot.command()
+async def order(ctx, action, coin, amount):
+    if action.upper() not in actionlist:
+        await ctx.send("Hey <@" + ctx.author.id + "> you have to specify an action (buy or sell)")
+    if action.upper() == "BUY":
+        #we do a little taking currency and sending it to someone else
+    if action.upper() == "SELL":
+        #we do a little selling currency
 
 bot.run(TOKEN)
