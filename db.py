@@ -177,3 +177,40 @@ CREATE = """CREATE TABLE IF NOT EXISTS Users (
   ZRXamnt BIGINT NOT NULL DEFAULT 0,
 
 );"""
+
+class Database:
+    """A database interface for the bot to connect to Postgres."""
+
+    def __init__(self):
+        self.pool = None
+
+    async def setup(self):
+        self.pool = await create_pool(dsn=getenv("DATABASE_URL"))
+        await self.execute(CREATE)
+
+    async def execute(self, query: str, *args):
+        async with self.pool.acquire() as conn:
+            await conn.execute(query, *args)
+
+    async def fetchrow(self, query: str, *args):
+        async with self.pool.acquire() as conn:
+            return await conn.fetchrow(query, *args)
+
+    async def fetch(self, query: str, *args):
+        async with self.pool.acquire() as conn:
+            return await conn.fetch(query, *args)
+
+    async def create_user(self, id: int):
+        return await self.fetchrow("INSERT INTO Users (id) VALUES ($1) RETURNING *;", id)
+    
+    async def update_user_balance(self, id: int, xp: int):
+        await self.execute("UPDATE Users SET balance = balance + $1 WHERE id = $2;", xp, id)
+
+    async def get_coin_leaderboard(self):
+        return await self.fetch("SELECT * FROM Users ORDER BY balance DESC LIMIT 15;")
+        
+    async def get_user(self, id: int):
+        user =  await self.fetchrow("SELECT * FROM Users WHERE id = $1;", id)
+        if user:
+            return user
+        return await self.create_user(id)

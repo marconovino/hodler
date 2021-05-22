@@ -1,5 +1,6 @@
 import shrimpy
 import plotly.graph_objects as go
+from db import Database
 import discord
 import asyncio
 import os
@@ -10,6 +11,7 @@ from discord.ext import commands
 bot = commands.Bot(command_prefix = '$', activity=discord.Game(name="Hodling coinz"))
 TOKEN = os.getenv('DISCORD_TOKEN')
 DATABASE_URL = os.environ['DATABASE_URL']
+bot.db = Database()
 public_key = os.getenv('SHRIMPY_PUB')
 secret_key = os.getenv('SHRIMPY_PRIV')
 client = shrimpy.ShrimpyApiClient(public_key, secret_key)
@@ -18,6 +20,11 @@ open_data = []
 high_data = []
 low_data = []
 close_data = []
+
+@bot.listen()
+async def on_connect():
+    await bot.db.setup()
+    print("database loaded")
 
 @bot.event
 async def on_ready():
