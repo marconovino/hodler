@@ -61,8 +61,8 @@ async def order(ctx, action, coin, amount):
     if action.upper() not in actionlist:
         await ctx.send("Hey <@" + ctx.author.id + "> you have to specify an action (buy or sell)")
     if action.upper() == "BUY":
-        #we do a little taking currency and sending it to someone else
+        print("we do a little taking currency and sending it to someone else")
     if action.upper() == "SELL":
-        #we do a little selling currency
+        print("we do a little selling currency")
 
 bot.run(TOKEN)
